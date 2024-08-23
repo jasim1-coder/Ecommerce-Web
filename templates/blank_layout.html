@@ -13,10 +13,15 @@
 </head>
 
 <body>
-    {% block header %}
-    {% include 'header.html' %}
-    {% endblock header %}
-
+    <div class="header">
+        <div class="container">
+            {% include 'menu.html'%}
+            {% block banner %}
+            {% comment %} {% include 'banner_layout.html'%} {% endcomment %}
+            {% endblock banner %}
+    
+        </div>
+    </div>
 
     <!-- Feadtued Categories -->
     {% block content %}
