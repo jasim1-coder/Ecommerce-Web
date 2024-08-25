@@ -9,7 +9,7 @@
                 {% if messages %}
                 <div class="message-container">
                     {% for message in messages %}
-                    <li style="color: red;">{{ message }}</li>
+                         <li class="{{ message.tags }}">{{ message }}</li>
                     {% endfor%}
                 </div>
                 {% endif %}

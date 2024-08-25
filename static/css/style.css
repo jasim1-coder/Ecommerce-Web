@@ -396,6 +396,12 @@ th:last-child{
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
+.error{ 
+    color: red;
+}
+.success{
+    color: green;
+}
 .form-container{
     background: #fff;
     width: 300px;
