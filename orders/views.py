@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from . models import Order,OderedItem
 from django.contrib import messages
 from products.models import Products
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def show_cart(request):
@@ -22,6 +23,7 @@ def remove_item_from_cart(request,pk):
         item.delete()
     return redirect('cart')
 
+@login_required(login_url='account')
 def add_to_cart(request):
     if request.POST:
         user=request.user
@@ -69,3 +71,18 @@ def checkout_cart(request):
                 status_message="Unable to process. No items in cart."
                 messages.error(request,status_message)
     return redirect('cart')
+
+@login_required(login_url='account')
+def view_orders(request):
+    user=request.user
+    customer=user.customer_profile
+    
+    return render(request, 'cart.html', context)
+
+@login_required(login_url='account')
+def show_orders(request):
+    user=request.user
+    customer=user.customer_profile
+    all_orders=Order.objects.filter(owner=customer).exclude(order_status=Order.CART_STAGE)
+    context={'orders':all_orders}
+    return render(request, 'orders.html', context)
